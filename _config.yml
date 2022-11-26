@@ -1,9 +1,8 @@
 title: Zhezhen's Sciart Playground # your name (or website title) here
-logo: "/images/zhezhen_web_logo.jpeg=true" # your photo (or logo) here
+logo: "/images/zhezhen_web_logo.jpeg?raw=true" # your photo (or logo) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
-  passinate about art and science communication 
-  <br><br>
-  exploring creating abstract art using coding languages
+  art and science communication 
+  creating abstract art using coding languages
   <br><br>
   <a href="https://www.linkedin.com/in/example/">View My LinkedIn Profile</a> 
 theme: jekyll-theme-minimal
