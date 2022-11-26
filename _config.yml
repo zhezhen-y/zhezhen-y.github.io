@@ -1,5 +1,5 @@
 title: Zhezhen's Sciart Playground # your name (or website title) here
-logo: zhezhen_web_logo.jpeg=true" # your photo (or logo) here
+logo: "/images/zhezhen_web_logo.jpeg=true" # your photo (or logo) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
   passinate about art and science communication 
   <br><br>
