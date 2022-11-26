@@ -12,7 +12,6 @@
 
 ---
 [Heatmap](/sample_page)
-<img src="images/heatmap1.png?raw=true"/>
 <img src="images/heatmap2.png?raw=true"/>
 
 ---
