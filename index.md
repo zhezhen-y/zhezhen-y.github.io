@@ -11,12 +11,9 @@
 <img src="images/imitate_new_york_spring.png?raw=true"/>
 
 ---
-[Heatmap](/pdf/sample_presentation.pdf)
+[Heatmap](/sample_page)
 <img src="images/heatmap1.png?raw=true"/>
 <img src="images/heatmap2.png?raw=true"/>
----
-[Project 3 Title](http://example.com/)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
 
