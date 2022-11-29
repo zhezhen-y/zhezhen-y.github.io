@@ -19,8 +19,6 @@
 ### Stable Diffusion Adventures
 
 - [What would Hilma af Klint do?](http://example.com/)
-- [What if cats rule the labs?](http://example.com/)
+- [What if cats rule the labs?] (/cats_in_labs)
 
 ---
-<p style="font-size:11px">Page template forked from <a href="https://github.com/evanca/quick-portfolio">evanca</a></p>
-<!-- Remove above link if you don't want to attibute -->
