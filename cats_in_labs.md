@@ -1,31 +1,36 @@
-## This can be your internal website page / project page
+## What if cats rule the labs?
 
-**Project description:** Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+**Project description:**   
 
-### 1. Suggest hypotheses about the causes of observed phenomena
+Have you ever wondered what would it be like if cats wear lab coats, perform experiments, and do research? 
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+With the help of [stable diffusion](https://stablediffusionweb.com), I was able to create some interesting images.
 
-```javascript
-if (isAwesome){
-  return true
-}
+Those are some examples of the keywords I entered in the prompt:
+
 ```
-
-### 2. Assess assumptions on which statistical inference will be based
-
-```javascript
-if (isAwesome){
-  return true
-}
+a cat knocking down a box of chemical reagent
+cat drinking coffee in an office
+cat with glasses in front of a computer in an office
 ```
+## Reveal time...!
 
-### 3. Support the selection of appropriate statistical tools and techniques
+### Cats doing experiments??
+<img src="images/stablediffusion/catinlabs/a cat knocking down a box of chemical reagent 2.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/a cat knocking down a reagent bottle in a lab.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cats with chemical reagents in a lab 3.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cats with chemical reagents in a lab 5.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cats with chemical reagents in a lab.jpeg?raw=true"/>
 
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
 
-### 4. Provide a basis for further data collection through surveys or experiments
+### Cats drinking coffee?!
+<img src="images/stablediffusion/catinlabs/cat drinking coffee in an office 10.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cat drinking coffee in an office 3.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cat drinking coffee in an office 6.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cat drinking coffee in an office 7.jpeg?raw=true"/>
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Cats in their offices doing research?!
+<img src="images/stablediffusion/catinlabs/cat with glasses in front of a computer in an office.jpeg?raw=true"/>
+<img src="images/stablediffusion/catinlabs/cat in front of a computer in an office.jpeg?raw=true"/>
+
