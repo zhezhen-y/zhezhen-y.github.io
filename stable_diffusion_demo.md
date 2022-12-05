@@ -36,16 +36,13 @@ A delicious ceviche cheesecake slice
 alone in the amusement park by Edward Hopper
 ```
 
-### Step 3. The last step: click "Generate image" button!
-This may take a bit of the time.  
-Usually you will get four pictures. 
+### Step 3. The last step: click "Generate image" button! 
+**Usually you will get four images.**   
 Here are the images I got on Stable Diffusion Online:  
-<img src="images/stablediffusion/demo/Stable Diffusion cells.jpg?raw=true"/>
- 
-Sometimes you get less than four:
-<img src="images/stablediffusion/demo/Stable Diffusion Online.jpg?raw=true"/>
-  
-Some combinations of keyword work better than others:
+<img src="images/stablediffusion/demo/Stable Diffusion cells.jpg?raw=true"/>  
+**Sometimes you get less than four:**   
+<img src="images/stablediffusion/demo/Stable Diffusion Online.jpg?raw=true"/>   
+**Some combinations of keyword work better than others:**
 <img src="images/stablediffusion/demo/Stable Diffusion Online hilma.jpg?raw=true"/>
 
 
