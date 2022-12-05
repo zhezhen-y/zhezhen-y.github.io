@@ -38,16 +38,16 @@ alone in the amusement park by Edward Hopper
 
 ### Step 3. The last step: click "Generate image" button!
 This may take a bit of the time.  
+Usually you will get four pictures. 
 Here are the images I got on Stable Diffusion Online:  
-
 <img src="images/stablediffusion/demo/Stable Diffusion cells.jpg?raw=true"/>
-Usually you will get four pictures.  
-
+ 
+Sometimes you get less than four:
 <img src="images/stablediffusion/demo/Stable Diffusion Online.jpg?raw=true"/>
-Sometimes you get less than four.  
-
+  
+Some combinations of keyword work better than others:
 <img src="images/stablediffusion/demo/Stable Diffusion Online hilma.jpg?raw=true"/>
-Some combinations of keyword work better than others.
+
 
 ## More possibilities..
 
