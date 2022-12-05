@@ -4,7 +4,7 @@ Have you ever wondered what would it be like if cats wear lab coats, perform exp
 
 With the help of [stable diffusion](https://stablediffusionweb.com), I was able to create some interesting images under that theme.
 
-Those are some examples of the keywords I used:
+Below are some examples of the prompts I used:
 
 ```
 a cat knocking down a box of chemical reagent in a lab
@@ -12,7 +12,7 @@ cat drinking coffee in an office
 cat with glasses in front of a computer in an office
 ```
 Stable diffusion has returned me some very funny pictures.  
-Some are more convincing; some will need more touches.
+Some are quite convincing; some will need more touches.
 
 ## Reveal time...!
 
