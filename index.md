@@ -18,7 +18,7 @@
 
 ### Stable Diffusion Adventures
 
-- [What would Hilma af Klint do?](http://example.com/)
+- [What would Hilma af Klint do?](/hilma_af_klint_inspired_art.md)
 - [What if cats rule the labs?](/cats_in_labs.md)
 
 ---
