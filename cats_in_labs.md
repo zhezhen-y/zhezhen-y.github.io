@@ -4,6 +4,8 @@ Have you ever wondered what would it be like if cats wear lab coats, perform exp
 
 With the help of [stable diffusion](https://stablediffusionweb.com), I was able to create some interesting images under that theme.
 
+*(Click [here](stable_diffusion_demo.md) for a quick guide to Stable Diffusion Online!)*  
+
 Below are some examples of the prompts I used:
 
 ```
@@ -36,4 +38,5 @@ Some are quite convincing; some will need more touches.
 ### Cats in their offices doing research?!
 <img src="images/stablediffusion/catinlabs/cat with glasses in front of a computer in an office.jpeg?raw=true"/>
 <img src="images/stablediffusion/catinlabs/cat in front of a computer in an office.jpeg?raw=true"/>
-
+   
+[< Back to main page](index.md)
