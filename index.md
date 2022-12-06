@@ -30,5 +30,3 @@
 ### Give me your feedbacks here!
 - [Google Survey](/example.com)
 
----
-
