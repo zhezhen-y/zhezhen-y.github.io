@@ -1,7 +1,8 @@
 ## What is Stable Diffusion?
 
 In short, Stable Diffusion is a free AI tool that generates images from text descriptions.  
-The best thing about it? No prior knowledge in coding is required to use it!
+The best thing about it?    
+No prior knowledge in coding is required to use it!
 
 > Stable Diffusion is a deep learning, text-to-image model released in 2022.   
 > The Stable Diffusion model supports the ability to generate new images from scratch through the use of a text prompt describing elements to be included or omitted from the output.   
@@ -37,14 +38,18 @@ alone in the amusement park by Edward Hopper
 ```
 
 ### Step 3. The last step: click "Generate image" button! 
-**Usually you will get four images.**   
-Here are the images I got on Stable Diffusion Online:  
-<img src="images/stablediffusion/demo/Stable Diffusion cells.jpg?raw=true"/>  
-**Sometimes you get less than four:**   
-<img src="images/stablediffusion/demo/Stable Diffusion Online.jpg?raw=true"/>   
-**Some combinations of keyword work better than others:**
-<img src="images/stablediffusion/demo/Stable Diffusion Online hilma.jpg?raw=true"/>
+   
+Below are the images I got on Stable Diffusion Online:  
 
+**Usually you will get four images.**   
+<img src="images/stablediffusion/demo/Stable Diffusion cells.png" width="700">    
+    
+**Sometimes you get less than four:**   
+<img src="images/stablediffusion/demo/Stable Diffusion Online.png"  width="700">   
+    
+**Some combinations of keyword work better than others:**
+<img src="images/stablediffusion/demo/Stable Diffusion Online hilma.png" width="700">  
+(For more artworks I created that are inspired by Hilma af Klint, click [here](hilma_af_klint_inspired_art.md).)
 
 ## More possibilities..
 
@@ -53,5 +58,9 @@ Here are the images I got on Stable Diffusion Online:
 <img src="images/stablediffusion/demo/molecular biology in Impressionism style.jpeg?raw=true"/>
 
 ### Sequencing data in minimalism style
-<img src="images/stablediffusion/demo/sequencing data in minimalism style.jpeg?raw=true"/>
+<img src="images/stablediffusion/demo/sequencing data in minimalism style.jpeg?raw=true"/>  
+
+(For some funny cat images, click [here](cats_in_labs.md).)
+
+[< Back to main page](index.md)
 
