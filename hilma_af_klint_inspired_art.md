@@ -10,6 +10,8 @@ So what if Hilma af Klint were actually inspired by those biological concepts an
 
 With the help of [stable diffusion](https://stablediffusionweb.com), I was able to create some interesting images under that theme.
 
+*(Click [here](stable_diffusion_demo.md) for a quick guide to Stable Diffusion Online!)*
+
 Below are some examples of the prompts I used:
 
 ```
@@ -32,3 +34,5 @@ chromosomes in the style of Hilma af Klint
 <img src="images/stablediffusion/hilmaafklint/DNA in the style of Hilma af Klint.jpeg?raw=true"/>
 <img src="images/stablediffusion/hilmaafklint/chromosomes in the style of Hilma af Klint 2.jpeg?raw=true"/>
 <img src="images/stablediffusion/hilmaafklint/chromosomes in the style of Hilma af Klint.jpeg?raw=true"/>
+
+[< Back to main page](index.md)
