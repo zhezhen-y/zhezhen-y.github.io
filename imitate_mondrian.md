@@ -37,7 +37,7 @@ def uniform_offsets(num,umin,umax):
     u = np.random.uniform(umin,umax,num)
     return u
 ```
-### Define a function that roll the dices all three layers of lines.
+### Define a function that roll the dices for all three layers of lines.
 ```
 def mondrian_offsets(set1=2,set2=2,set3=8):
     # Make empty list to store the 3 sets of randomly sampled offsets.
@@ -94,6 +94,6 @@ imitate_new_york()
 This is what you might get:  
 <img src="images/imitate_new_york.png?raw=true">
 
-For a full detailed process that how the functions evolve, check out my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
+For a full detailed process of how the functions evolve, check out my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
 
 [< Back to main page](index.md)
