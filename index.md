@@ -1,14 +1,8 @@
 ## Portfolio
 
----
-
-### [About](/about)
-
----
-
 ### Beauty of randomness
 
-[Imitate Mondrian](/sample_page)  
+[Imitate Mondrian](/imitate_mondrian)  
 <img src="images/imitate_new_york.png?raw=true">
 
 [Imitate Mondrian - Four Seasons](/sample_page)  
@@ -21,9 +15,9 @@
 
 ### Stable Diffusion Adventures
 
-- [What is Stable Diffusion?](/stable_diffusion_demo.md)
-- [What would Hilma af Klint do?](/hilma_af_klint_inspired_art.md)
-- [What if cats rule the labs?](/cats_in_labs.md)
+- [What is Stable Diffusion?](/stable_diffusion_demo)
+- [What would Hilma af Klint do?](/hilma_af_klint_inspired_art)
+- [What if cats rule the labs?](/cats_in_labs)
 
 ---
 
