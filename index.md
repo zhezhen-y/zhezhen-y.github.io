@@ -6,7 +6,7 @@
 [Imitate Mondrian](/imitate_mondrian)  
 <img src="images/imitate_new_york.png?raw=true">
 
-[Imitate Mondrian - Four Seasons](/sample_page)  
+[Imitate Mondrian - Four Seasons](/imitate_mondrian_four_seasons)  
 <img src="images/imitate_new_york_spring.png?raw=true">   
 
 [Heatmap](/sample_page)    
