@@ -1,3 +1,7 @@
+## Imitate Mondrian 
+A sciart project of re-creating Mondrian's artwork using Python.  
+The process was recorded in my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
+
 ## Mondrian who?
 [Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian) is one of the most influential abstract artist.   
 Many of his work is made of artistic combinations of lines and squares, such as in his famous [*New York City* painting](https://en.wikipedia.org/wiki/New_York_City_(painting)).
@@ -12,11 +16,6 @@ Here, numpy and matplotlib are used.
 ```
 import numpy as np  
 import matplotlib.pyplot as plt
-```
-Optional step: use random seed to make the figures reproducible.    
-Otherwise, they will change each time they are run.
-```
-np.random.seed(5)
 ```
 ### Then, define two functions that would roll the dice for the positions of lines on the plot.
 
@@ -37,7 +36,7 @@ def uniform_offsets(num,umin,umax):
     u = np.random.uniform(umin,umax,num)
     return u
 ```
-### Define a function that roll the dices for all three layers of lines.
+### Next, define a function that roll the dices for all three layers of lines.
 ```
 def mondrian_offsets(set1=2,set2=2,set3=8):
     # Make empty list to store the 3 sets of randomly sampled offsets.
@@ -91,7 +90,7 @@ def imitate_new_york(palette = ['#d61d18','#413f6f','#fada00'], linewidth = 30):
 ```
 imitate_new_york()
 ```
-This is what you might get:  
+This is what you might get after running the above function:  
 <img src="images/imitate_new_york.png?raw=true">
 
 For a full detailed process of how the functions evolve, check out my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
