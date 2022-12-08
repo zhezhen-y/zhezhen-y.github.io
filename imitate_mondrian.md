@@ -1,16 +1,17 @@
 ## Imitate Mondrian 
-A sciart project of re-creating Mondrian's artwork using Python.  
-The process was recorded in my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
+Imitate Mondrian is a sciart project of re-creating Mondrian's artwork using Python.  
+In this project, I used Python libraries and functions to make plots that mimick his artwork, and recorded the process in my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
+
+<img src="images/imitate_new_york.png?raw=true">
 
 ## Mondrian who?
 [Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian) is one of the most influential abstract artist.   
 Many of his work is made of artistic combinations of lines and squares, such as in his famous [*New York City* painting](https://en.wikipedia.org/wiki/New_York_City_(painting)).
 
-In this project, I used Python libraries and functions to make plots that mimick his artwork, and recorded the process.
----
+## Minimal python code needed for this project:
 ### First thing first - let's import some useful python libraries!
-The artwork is consist of 3 interwined layers of lines, with the yellow lines as the topmost layer.   
-I plan to randomly generate some offsets to determine the positions of the lines on the plots, and use matplotlib to draw the lines.   
+The original artwork is consist of 3 interwined layers of lines, with the yellow lines as the topmost layer.   
+I wanted to randomly generate some offsets to determine the positions of the lines on the plots, and use matplotlib to draw the lines.   
 Here, numpy and matplotlib are used.
 
 ```
@@ -90,8 +91,6 @@ def imitate_new_york(palette = ['#d61d18','#413f6f','#fada00'], linewidth = 30):
 ```
 imitate_new_york()
 ```
-This is what you might get after running the above function:  
-<img src="images/imitate_new_york.png?raw=true">
 
 For a full detailed process of how the functions evolve, check out my [Jupyter Notebook](https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb).
 
