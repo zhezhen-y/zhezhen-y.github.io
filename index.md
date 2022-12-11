@@ -23,5 +23,5 @@
 ---
 
 ### Give me your feedbacks here!
-- [Google Survey](/https://docs.google.com/forms/d/1ASEToTRatJDJxUy9N8Q9pEE5UA3WWo4YhIYGU93q3Xg/edit)
+- [Google Survey](https://forms.gle/2YcYhPnsP2LWBGD98)
 
