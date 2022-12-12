@@ -1,10 +1,10 @@
 ## What would Hilma af Klint do?
 
-Hilma af Klint has been one of my favorite abstract artist.    
+Hilma af Klint is one of my favorite abstract artists.    
 
-Years ago, I was lucky to see her art [on exhibition at Guggenheim Museum](https://www.guggenheim.org/exhibition/hilma-af-klint).  
+Years ago, I was lucky to see her art [on exhibit at Guggenheim Museum](https://www.guggenheim.org/exhibition/hilma-af-klint).  
 
-When I look at her art, they almost always remind me of some molecular and cellular biology concepts, such as chromosomes, cell divisions, etc.  
+When I look at her art, it almost always reminds me of some molecular and cellular biology concepts, such as chromosomes, cell divisions, etc.  
 
 So what if Hilma af Klint were actually inspired by those biological concepts and made abstract art based on those?
 
