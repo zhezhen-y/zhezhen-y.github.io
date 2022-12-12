@@ -22,6 +22,6 @@
 
 ---
 
-### Give me your feedbacks here!
+### Give me your feedback here!
 - [Google Survey](https://forms.gle/2YcYhPnsP2LWBGD98)
 
