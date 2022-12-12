@@ -4,12 +4,12 @@ In this project, I used Python libraries and functions to make plots that mimick
 
 <img src="images/imitate_new_york.png?raw=true">
 
-## Mondrian who?
+## Mondrian *who*?
 [Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian) is one of the most influential abstract artist.   
 Many of his work is made of artistic combinations of lines and squares, such as in his famous [*New York City* painting](https://en.wikipedia.org/wiki/New_York_City_(painting)).
 
 ## Minimal python code needed for this project:
-### First thing first - let's import some useful python libraries!
+### First things first - let's import some useful python libraries!
 The original artwork is consist of 3 interwined layers of lines, with the yellow lines as the topmost layer.   
 I wanted to randomly generate some offsets to determine the positions of the lines on the plots, and use matplotlib to draw the lines.   
 Here, numpy and matplotlib are used.
