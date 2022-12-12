@@ -9,7 +9,7 @@
 [Imitate Mondrian - Four Seasons](/imitate_mondrian_four_seasons)  
 <img src="images/imitate_new_york_spring.png?raw=true">   
 
-[Heatmap](/heatmap)    
+[Heatmap as Art](/heatmap)    
 <img src="images/heatmap2.png?raw=true">
 
 ---
