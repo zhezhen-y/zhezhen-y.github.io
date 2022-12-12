@@ -6,10 +6,10 @@ See more information about Mondrian and this series, [click here](imitate_mondri
 
 ## Imitate Mondrian - four seasons
 
-<img src="images/mondrian/IM_spring.png?raw=true">
-<img src="images/mondrian/IM_summer.png?raw=true">
-<img src="images/mondrian/IM_autumn.png?raw=true">
-<img src="images/mondrian/IM_winter.png?raw=true">
+<img src="images/mondrian/IM_spring0.png?raw=true">
+<img src="images/mondrian/IM_summer0.png?raw=true">
+<img src="images/mondrian/IM_autumn0.png?raw=true">
+<img src="images/mondrian/IM_winter0.png?raw=true">
 
 ## See code below to recreate "imitate new york - four seasons".
 ```
