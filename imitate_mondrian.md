@@ -69,7 +69,7 @@ def mondrian_offsets(set1=2,set2=2,set3=8):
 ```
 ### Finally, define the function that makes the plot.
 ```
-def imitate_new_york(palette = ['#d61d18','#413f6f','#fada00'], linewidth = 30):
+def imitate_new_york(palette = ['#d61d18','#413f6f','#fada00'], linewidth = 20):
     # roll the dice
     mondrian_offsets(set1=2,set2=2,set3=10)
     # assign values to variables
