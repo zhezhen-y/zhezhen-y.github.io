@@ -1,6 +1,6 @@
 ## About
 
-### This website displays my sciart creations and provides instruction for anyone interested in re-creating them.
+### This website displays my sciart creations and provides instructions for anyone interested in recreating them.
 
 >Integrating my knowledge in coding and data visualization   
 >with storytelling skills,   
@@ -11,3 +11,5 @@ Zhezhen Yu
 
 *Molecular and Cellular Biology Program*   
 *Stony Brook University*
+
+[< Back to main page](index.md)
