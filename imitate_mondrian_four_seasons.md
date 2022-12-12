@@ -14,13 +14,13 @@ See more information about Mondrian and this series, [click here](imitate_mondri
 ## See code below to recreate "imitate new york - four seasons".
 ```
 # Spring
-imitate_new_york(['greenyellow','darkviolet','hotpink'], 30)
+imitate_new_york(['greenyellow','darkviolet','hotpink'], 20)
 # Summer 
-imitate_new_york(['darkgreen','green','olive'], 30)
+imitate_new_york(['darkgreen','green','olive'], 20)
 # Fall
-imitate_new_york(['brown','orangered','sienna'], 30)
+imitate_new_york(['brown','orangered','sienna'], 20)
 # Winter
-imitate_new_york(['grey','navy','azure'], 30)
+imitate_new_york(['grey','navy','azure'], 20)
 ```
 
 [< Back to main page](index.md)
