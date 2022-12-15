@@ -5,7 +5,7 @@ In this project, I used Python libraries and functions to make plots that mimick
 <img src="images/imitate_new_york.png?raw=true">
 
 ## Mondrian *who*?
-[Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian) is one of the most influential abstract artist.   
+[Piet Mondrian](https://www.wikiart.org/en/piet-mondrian) is one of the most influential abstract artist.   
 Many of his work is made of artistic combinations of lines and squares, such as in his famous [*New York City* painting](https://en.wikipedia.org/wiki/New_York_City_(painting)).
 
 ## Minimal python code needed for this project:
