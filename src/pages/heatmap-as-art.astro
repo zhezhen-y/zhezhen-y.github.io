@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/generator.css';
+import { PALETTES } from '../scripts/heatmap.js';
+
+const entries = Object.entries(PALETTES);
+---
+<Base
+  current="work"
+  title="Heatmap as Art"
+  accent="field"
+  description="Heatmaps in eight painters' palettes, from Hilma af Klint to Frida Kahlo."
+>
+  <article class="wrap">
+    <header class="gen-head">
+      <p class="stamp"><span class="eyebrow">Interactive &middot; Python &amp; JavaScript</span></p>
+      <h1 class="reveal">Heatmap as Art</h1>
+      <p class="lead reveal">
+        Heatmaps in eight painters&rsquo; palettes, from Hilma af Klint to Frida Kahlo.
+      </p>
+    </header>
+
+    <div class="panel">
+      <div class="ctl"><label for="palette">Palette</label>
+        <select id="palette">
+          {entries.map(([k, p]) => <option value={k}>{p.label} &middot; {p.work}</option>)}
+        </select></div>
+      <div class="ctl"><label for="structure">Structure</label>
+        <select id="structure">
+          <option value="blobs">Blobs</option>
+          <option value="bands">Bands</option>
+          <option value="rings">Rings</option>
+          <option value="static">Static</option>
+        </select></div>
+      <div class="ctl"><label for="scale">Scale</label>
+        <select id="scale">
+          <option value="fine">Fine</option>
+          <option value="medium" selected>Medium</option>
+          <option value="broad">Broad</option>
+        </select></div>
+      <div class="ctl"><label for="steps">Color</label>
+        <select id="steps">
+          <option value="0">Continuous</option>
+          <option value="3">3 steps</option><option value="4">4 steps</option>
+          <option value="5">5 steps</option><option value="6">6 steps</option>
+          <option value="7">7 steps</option><option value="8">8 steps</option>
+        </select></div>
+      <div class="ctl"><label for="aspect">Canvas</label>
+        <select id="aspect">
+          <option value="square">Square</option>
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select></div>
+      <div class="ctl"><label for="seed">Seed</label>
+        <input id="seed" type="number" min="0" step="1" value="11" /></div>
+      <div class="btnrow">
+        <button class="btn" id="gen">Generate</button>
+        <button class="btn ghost" id="reset">Palette defaults</button>
+        <button class="btn ghost" id="copy">Copy seed</button>
+      </div>
+    </div>
+
+    <div class="stage stagegrid">
+      <div><canvas id="cv"></canvas></div>
+      <aside class="meta">
+        <div>
+          <div class="artist" id="artist"></div>
+          <div class="work" id="work"></div>
+        </div>
+        <div class="swatches" id="swatches"></div>
+        <p class="note" id="note"></p>
+        <div class="facts" id="facts"></div>
+      </aside>
+    </div>
+
+    <section class="writeup">
+      <h2>What is a heatmap?</h2>
+      <p class="say">
+        Heatmaps are everywhere in biology: a grid where color stands for a number, so you
+        can take in a lot of numbers at once.
+      </p>
+
+      <h2 class="later">Heatmap as art?</h2>
+      <p class="say">
+        Seen from the view of a fiber artist, they are artistic combinations of color blocks,
+        not far from textile.
+      </p>
+
+      <h2 class="later">Try this</h2>
+      <p class="say">
+        Pick a painter, then change the structure. All four panels below use the same palette
+        and the same random numbers; only the shape those numbers are arranged in changes.
+        Each image is built from one starting number, called a seed, so copying it brings the
+        same image back.
+      </p>
+      <div class="pairs" id="pairs"></div>
+      <p class="say notebook">
+        The original Python notebook is on{' '}
+        <a href="https://github.com/zhezhen-y/sciart/blob/main/heatmaps.ipynb">GitHub</a>.
+      </p>
+    </section>
+  </article>
+  <div class="toast" id="toast">Copied</div>
+</Base>
+
+<script>
+  import { generate, PALETTES } from '../scripts/heatmap.js';
+
+  const $ = (id) => document.getElementById(id);
+
+  function paint(canvas, s) {
+    canvas.width = s.width; canvas.height = s.height;
+    canvas.getContext('2d').putImageData(new ImageData(s.pixels, s.width, s.height), 0, 0);
+    canvas.setAttribute('role', 'img');
+    canvas.setAttribute('aria-label', `${s.paletteLabel} palette over a ${s.structure} field, seed ${s.seed}`);
+  }
+
+  function applyDefaults() {
+    const p = PALETTES[$('palette').value];
+    $('structure').value = p.structure;
+    $('steps').value = String(p.steps);
+    $('aspect').value = p.aspect;
+    $('scale').value = 'medium';
+  }
+
+  function draw() {
+    const key = $('palette').value, p = PALETTES[key];
+    const s = generate({
+      seed: Math.max(0, parseInt($('seed').value, 10) || 0),
+      palette: key, structure: $('structure').value,
+      steps: parseInt($('steps').value, 10), aspect: $('aspect').value,
+      scale: $('scale').value, longEdge: 820,
+    });
+    paint($('cv'), s);
+
+    $('artist').textContent = p.label;
+    $('work').textContent = p.work;
+    $('note').textContent = p.note;
+
+    const sw = $('swatches');
+    sw.innerHTML = '';
+    for (const hex of p.stops) {
+      const d = document.createElement('div');
+      d.style.background = hex; d.title = hex;
+      sw.appendChild(d);
+    }
+    $('facts').innerHTML =
+      `<span>Structure</span><b>${s.structure}</b>` +
+      `<span>Scale</span><b>${s.scale}</b>` +
+      `<span>Color</span><b>${s.steps > 1 ? s.steps + ' steps' : 'continuous'}</b>` +
+      `<span>Canvas</span><b>${s.width} × ${s.height}</b>` +
+      `<span>Seed</span><b>${s.seed}</b>`;
+    drawPairs(key);
+  }
+
+  const LABELS = {
+    static: ['Static', 'raw white noise, the original method'],
+    blobs:  ['Blobs',  'a coarse lattice, interpolated up'],
+    bands:  ['Bands',  'a one-dimensional profile'],
+    rings:  ['Rings',  'warped concentric waves'],
+  };
+
+  function drawPairs(key) {
+    const host = $('pairs');
+    host.innerHTML = '';
+    const seed = Math.max(0, parseInt($('seed').value, 10) || 0);
+    for (const st of ['static', 'blobs', 'bands', 'rings']) {
+      const f = document.createElement('figure');
+      const c = document.createElement('canvas');
+      paint(c, generate({ seed, palette: key, structure: st,
+                          steps: parseInt($('steps').value, 10),
+                          aspect: 'square', scale: $('scale').value, longEdge: 340 }));
+      f.appendChild(c);
+      const cap = document.createElement('figcaption');
+      cap.innerHTML = `<b>${LABELS[st][0]}</b> &middot; ${LABELS[st][1]}`;
+      f.appendChild(cap);
+      host.appendChild(f);
+    }
+  }
+
+  let timer;
+  function toast(m) {
+    const t = $('toast'); t.textContent = m; t.classList.add('on');
+    clearTimeout(timer); timer = setTimeout(() => t.classList.remove('on'), 1600);
+  }
+
+  $('palette').addEventListener('change', () => { applyDefaults(); draw(); });
+  for (const id of ['structure', 'scale', 'steps', 'aspect', 'seed']) $(id).addEventListener('change', draw);
+  $('seed').addEventListener('input', draw);
+  $('gen').addEventListener('click', () => { $('seed').value = Math.floor(Math.random() * 100000); draw(); });
+  $('reset').addEventListener('click', () => { applyDefaults(); draw(); });
+  $('copy').addEventListener('click', async () => {
+    const v = $('seed').value;
+    try { await navigator.clipboard.writeText(v); toast(`Seed ${v} copied`); }
+    catch { toast(`Seed is ${v}`); }
+  });
+
+  applyDefaults();
+  draw();
+</script>
+
+<style>
+  .stagegrid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:42px;align-items:start}
+  @media(max-width:840px){.stagegrid{grid-template-columns:1fr}}
+  #cv{width:auto;height:auto;max-width:100%;max-height:620px;display:block;
+      margin-inline:auto;box-shadow:0 3px 40px var(--shadow)}
+  .meta{display:flex;flex-direction:column;gap:20px}
+  .artist{font-size:1.4rem;font-weight:200;letter-spacing:-.01em;line-height:1.15}
+  .work{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:.98rem;margin-top:4px}
+  .note{font-family:var(--serif);color:var(--muted);font-size:.94rem;line-height:1.6;margin:0}
+  .swatches{display:flex;height:40px;border:1px solid var(--rule-strong);overflow:hidden}
+  .swatches :global(div){flex:1}
+  .facts{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+         color:var(--muted);display:grid;grid-template-columns:auto 1fr;gap:7px 14px;
+         font-variant-numeric:tabular-nums}
+  .facts :global(b){color:var(--ink);font-weight:700}
+  .pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px}
+  .pairs :global(figure){margin:0}
+  .pairs :global(canvas){width:100%;height:auto;display:block;box-shadow:0 2px 18px var(--shadow)}
+  .pairs :global(figcaption){font-family:var(--mono);text-transform:uppercase;font-size:10px;
+    letter-spacing:.1em;color:var(--muted);margin-top:11px}
+  .pairs :global(figcaption b){color:var(--ink);font-weight:700}
+  .say{font-family:var(--serif);font-size:1.02rem;line-height:1.75;color:var(--muted);
+       max-width:var(--measure);margin:0 0 30px}
+  .notebook{margin-top:38px}
+  .writeup h2.later{margin-top:52px}
+</style>

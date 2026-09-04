@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/generator.css';
+---
+<Base
+  current="work"
+  title="Composition Machine"
+  accent="mondrian"
+  description="A Mondrian generator built on recursive subdivision, and the six decisions that separate it from a grid of random offsets."
+>
+  <article class="wrap">
+    <header class="gen-head">
+      <p class="stamp"><span class="eyebrow">Interactive &middot; Python &amp; JavaScript</span></p>
+      <h1 class="reveal">Composition Machine</h1>
+      <p class="lead reveal">
+        Piet Mondrian is one of the most influential abstract artists, and many of his works
+        are artistic combinations of lines and squares. This project started simply: roll the
+        dice for the positions of the lines. This page is the version it grew into.
+      </p>
+    </header>
+
+    <div class="panel">
+      <div class="ctl"><label for="style">Style</label>
+        <select id="style">
+          <option value="classic">Classic, 1930</option>
+          <option value="nyc">New York City, 1942</option>
+          <option value="boogie">Boogie Woogie, 1943</option>
+        </select></div>
+      <div class="ctl"><label for="density">Density</label>
+        <select id="density">
+          <option value="sparse">Sparse</option>
+          <option value="balanced" selected>Balanced</option>
+          <option value="dense">Dense</option>
+        </select></div>
+      <div class="ctl"><label for="weight">Line weight</label>
+        <select id="weight">
+          <option value="thin">Thin</option>
+          <option value="mixed" selected>Mixed</option>
+          <option value="bold">Bold</option>
+        </select></div>
+      <div class="ctl"><label for="color">Color</label>
+        <select id="color">
+          <option value="restrained">Restrained</option>
+          <option value="balanced" selected>Balanced</option>
+          <option value="vivid">Vivid</option>
+        </select></div>
+      <div class="ctl"><label for="seed">Seed</label>
+        <input id="seed" type="number" min="0" step="1" value="7" /></div>
+      <div class="checks">
+        <label class="chk" id="cmpWrap"><input type="checkbox" id="compare" /> Compare with naive lattice</label>
+        <label class="chk"><input type="checkbox" id="portrait" checked /> Portrait canvas</label>
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="gen">Generate</button>
+        <button class="btn ghost" id="copy">Copy seed</button>
+      </div>
+    </div>
+
+    <div class="stage"><div id="stage"></div></div>
+
+    <section class="writeup">
+      <h2>Try this</h2>
+      <p class="say">
+        Turn on <em>Compare with naive lattice</em> to see the two side by side. The left
+        panel places every line independently. The right one splits the canvas, then splits
+        the pieces again.
+      </p>
+      <p class="say">
+        The other controls change how far the splitting goes, how much the line weights vary,
+        and how much color is allowed in. Each image is built from one starting number, called
+        a seed. Copy it and the same image comes back, on any screen.
+      </p>
+      <h2 class="later">Three styles</h2>
+      <p class="say">
+        Mondrian's work changed over his life: black-lined grids in the 1930s, then colored
+        lines with no black in them at all. Here is one image drawn in three of his styles.
+      </p>
+      <div class="gallery" id="styles"></div>
+
+      <p class="say notebook">
+        The original Python notebook is on{' '}
+        <a href="https://github.com/zhezhen-y/sciart/blob/main/imitate_mondrian_new_york.ipynb">GitHub</a>.
+      </p>
+    </section>
+  </article>
+  <div class="toast" id="toast">Copied</div>
+</Base>
+
+<script>
+  import { generate } from '../scripts/mondrian.js';
+
+  const $ = (id) => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const el = (t, a) => { const n = document.createElementNS(SVGNS, t); for (const k in a) n.setAttribute(k, a[k]); return n; };
+
+  // Lines are rectangles, not strokes: a stroke straddles the coordinate and
+  // half-covers the cells either side, which smudges every join.
+  const lineRect = (L, fill) => L.vertical
+    ? el('rect', { x: L.pos - L.width / 2, y: L.from, width: L.width, height: L.to - L.from, fill })
+    : el('rect', { x: L.from, y: L.pos - L.width / 2, width: L.to - L.from, height: L.width, fill });
+
+  function render(s) {
+    const { width: W, height: H, paint: P } = s;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, xmlns: SVGNS, 'shape-rendering': 'crispEdges',
+                            role: 'img', 'aria-label': `Generated composition, seed ${s.seedLabel}` });
+    svg.appendChild(el('rect', { x: 0, y: 0, width: W, height: H, fill: P[s.ground || 'ground'] }));
+    if (s.mode === 'classic') {
+      for (const c of s.cells) if (c.fill) svg.appendChild(el('rect', { x: c.x, y: c.y, width: c.w, height: c.h, fill: P[c.fill] }));
+      for (const L of s.lines) svg.appendChild(lineRect(L, P.ink));
+    } else {
+      for (const b of s.blocks.filter(b => b.layer === -1)) svg.appendChild(el('rect', { x: b.x, y: b.y, width: b.w, height: b.h, fill: P[b.hue] }));
+      for (const L of s.lines) if (!L.vertical) svg.appendChild(lineRect(L, P[L.hue]));
+      for (const L of s.lines) if (L.vertical) svg.appendChild(lineRect(L, P[L.hue]));
+      for (const c of s.crossings) {
+        if (c.vOnTop) continue;
+        const Hl = s.lines[c.h], V = s.lines[c.v];
+        svg.appendChild(el('rect', { x: c.x - V.width / 2 - 0.5, y: Hl.pos - Hl.width / 2, width: V.width + 1, height: Hl.width, fill: P[Hl.hue] }));
+      }
+      for (const b of s.blocks.filter(b => b.layer !== -1)) svg.appendChild(el('rect', { x: b.x, y: b.y, width: b.w, height: b.h, fill: P[b.hue] }));
+    }
+    return svg;
+  }
+
+  const opts = () => ({
+    seed: Math.max(0, parseInt($('seed').value, 10) || 0),
+    style: $('style').value, density: $('density').value,
+    weight: $('weight').value, color: $('color').value,
+    width: 1000, height: $('portrait').checked ? 1240 : 800,
+  });
+
+  function panel(scene, caption, aside) {
+    const f = document.createElement('figure');
+    f.appendChild(render(scene));
+    const cap = document.createElement('figcaption');
+    cap.innerHTML = caption;
+    f.appendChild(cap);
+    if (aside) { const p = document.createElement('p'); p.className = 'aside'; p.textContent = aside; f.appendChild(p); }
+    return f;
+  }
+
+  function draw() {
+    const o = opts();
+    const woven = o.style !== 'classic';
+    const compare = $('compare').checked && !woven;
+    const stage = $('stage');
+    stage.innerHTML = '';
+    stage.className = compare ? 'pair' : 'single';
+
+    if (compare) {
+      const nv = generate({ ...o, naive: true });
+      nv.seedLabel = o.seed;
+      stage.appendChild(panel(nv, 'Naive &middot; <b>uniform lattice</b>',
+        'Independent random offsets, a single line width, pure white and pure black, and color scattered without restraint.'));
+    }
+    const s = generate(o);
+    s.seedLabel = o.seed;
+    const n = s.mode === 'classic'
+      ? `${s.cells.length} rectangles, ${s.cells.filter(c => c.fill).length} colored`
+      : `${s.lines.length} lines`;
+    stage.appendChild(panel(s, `Seed <b>${o.seed}</b> &middot; ${n}`, null));
+
+    // Color and the comparison belong to the classic mode only: from 1941 the
+    // lines themselves carry the color, so there are no cells to fill.
+    $('color').disabled = woven;
+    $('compare').disabled = woven;
+    $('cmpWrap').classList.toggle('off', woven);
+    drawStyles();
+  }
+
+  let timer;
+  function toast(m) {
+    const t = $('toast'); t.textContent = m; t.classList.add('on');
+    clearTimeout(timer); timer = setTimeout(() => t.classList.remove('on'), 1600);
+  }
+
+  const STYLES = [
+    ['classic', 'Classic', '1930'],
+    ['nyc',     'New York City', '1942'],
+    ['boogie',  'Boogie Woogie', '1943'],
+  ];
+
+  function drawStyles() {
+    const host = $('styles');
+    host.innerHTML = '';
+    const seed = Math.max(0, parseInt($('seed').value, 10) || 0);
+    for (const [style, name, year] of STYLES) {
+      const s = generate({ seed, style, density: $('density').value,
+                           weight: $('weight').value, color: $('color').value,
+                           width: 1000, height: 800 });
+      s.seedLabel = seed;
+      const f = document.createElement('figure');
+      f.appendChild(render(s));
+      const cap = document.createElement('figcaption');
+      cap.innerHTML = `<b>${name}</b> &middot; ${year}`;
+      f.appendChild(cap);
+      host.appendChild(f);
+    }
+  }
+
+  $('gen').addEventListener('click', () => { $('seed').value = Math.floor(Math.random() * 100000); draw(); });
+  for (const id of ['style', 'density', 'weight', 'color', 'seed', 'compare', 'portrait']) $(id).addEventListener('change', draw);
+  $('seed').addEventListener('input', draw);
+  $('copy').addEventListener('click', async () => {
+    const v = $('seed').value;
+    try { await navigator.clipboard.writeText(v); toast(`Seed ${v} copied`); }
+    catch { toast(`Seed is ${v}`); }
+  });
+  draw();
+</script>
+
+<style>
+  /* The figures and their captions are built by the script below, so they never
+     receive Astro's scoping attribute. Every selector that reaches them has to
+     be :global() or it silently does not apply. */
+  .writeup h2.later{margin-top:52px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px}
+  .gallery :global(figure){margin:0}
+  .gallery :global(svg){width:100%;height:auto;display:block;box-shadow:0 2px 18px var(--shadow)}
+  .gallery :global(figcaption){font-family:var(--mono);text-transform:uppercase;font-size:10px;
+    letter-spacing:.1em;color:var(--muted);margin-top:11px}
+  .gallery :global(figcaption b){color:var(--ink);font-weight:700}
+  .say{font-family:var(--serif);font-size:1.02rem;line-height:1.75;color:var(--muted);
+       max-width:var(--measure);margin:0 0 20px}
+  .notebook{margin-top:38px}
+  #stage.single{display:grid;grid-template-columns:1fr}
+  #stage.single :global(figure){max-width:560px}
+  #stage.pair{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+  @media(max-width:760px){#stage.pair{grid-template-columns:1fr}}
+  #stage :global(figure){margin:0}
+  #stage :global(svg){width:100%;height:auto;display:block;box-shadow:0 3px 40px var(--shadow)}
+  #stage :global(.aside){font-family:var(--serif);font-style:italic;color:var(--muted);
+    font-size:.94rem;margin:9px 0 0;max-width:52ch;line-height:1.6}
+</style>

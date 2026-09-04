@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import { getImage } from 'astro:assets';
+import dna from '../assets/archive/dna-1.jpeg';
+
+const archiveThumb = await getImage({ src: dna, width: 640, height: 480, fit: 'cover', format: 'webp' });
+---
+<Base current="work">
+  <section class="hero wrap">
+    <h1 class="reveal">Beauty of randomness</h1>
+    <p class="lead reveal">
+      Two generators that make pictures from randomness. Each one comes with the code and
+      an explanation of how it works.
+    </p>
+  </section>
+
+  <section class="wrap">
+    <div class="cards">
+      <Card
+        href="/mondrian/"
+        kind="Interactive · Python & JavaScript"
+        title="Composition Machine"
+        blurb="Why recursive subdivision looks like a Mondrian and a grid of random offsets never does."
+        thumb="mondrian"
+      />
+      <Card
+        href="/heatmap-as-art/"
+        kind="Interactive · Python & JavaScript"
+        title="Heatmap as Art"
+        blurb="Heatmaps in eight painters’ palettes, from Hilma af Klint to Frida Kahlo."
+        thumb="okeeffe"
+      />
+      <Card
+        href="/archive/hilma-af-klint/"
+        kind="Archive · 2022"
+        title="What would Hilma af Klint do?"
+        blurb="Prompting Stable Diffusion toward cell biology, in 2022."
+        image={archiveThumb.src}
+      />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero{padding:clamp(40px,9vw,96px) clamp(18px,4vw,32px) clamp(36px,6vw,64px)}
+  .hero .lead{margin-top:22px}
+  .cards{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:clamp(26px,4vw,40px);
+  }
+</style>
+
+<script>
+  import { generate as mondrian } from '../scripts/mondrian.js';
+  import { generate as field } from '../scripts/heatmap.js';
+
+  function paintMondrian(canvas) {
+    const w = canvas.clientWidth || 320, h = w * 0.75;
+    const r = window.devicePixelRatio || 1;
+    canvas.width = Math.round(w * r); canvas.height = Math.round(h * r);
+    const g = canvas.getContext('2d'); g.scale(r, r);
+    const s = mondrian({ seed: 4471, density: 'balanced', width: w, height: h });
+    const P = s.paint;
+    g.fillStyle = P.ground; g.fillRect(0, 0, w, h);
+    for (const c of s.cells) if (c.fill) { g.fillStyle = P[c.fill]; g.fillRect(c.x, c.y, c.w, c.h); }
+    g.fillStyle = P.ink;
+    for (const L of s.lines) {
+      if (L.vertical) g.fillRect(L.pos - L.width / 2, L.from, L.width, L.to - L.from);
+      else g.fillRect(L.from, L.pos - L.width / 2, L.to - L.from, L.width);
+    }
+  }
+
+  function paintField(canvas, palette, seed) {
+    const w = canvas.clientWidth || 320, h = Math.round(w * 0.75);
+    const s = field({ seed, palette, aspect: 'landscape', longEdge: Math.round(w) });
+    canvas.width = s.width; canvas.height = s.height;
+    canvas.getContext('2d').putImageData(new ImageData(s.pixels, s.width, s.height), 0, 0);
+  }
+
+  function paintAll() {
+    for (const c of document.querySelectorAll('canvas[data-thumb]')) {
+      const kind = c.dataset.thumb;
+      if (kind === 'mondrian') paintMondrian(c);
+      else paintField(c, kind, 11);
+    }
+  }
+  paintAll();
+  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(paintAll, 180); });
+</script>

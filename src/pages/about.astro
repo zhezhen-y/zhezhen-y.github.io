@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+<Base
+  current="about"
+  title="About"
+  description="Sciart by Zhezhen Yu."
+>
+  <article class="wrap">
+    <h1 class="reveal">About</h1>
+
+    <div class="cols reveal">
+      <div class="body">
+        <p class="lead">
+          This website displays my sciart creations.
+        </p>
+
+        <blockquote>
+          Integrating my knowledge in coding and data visualization with storytelling skills,
+          this sciart project hopefully sparks more interest in science, and brings more
+          attention to biological stories.
+        </blockquote>
+
+        <p>
+          I finished a PhD in Molecular and Cellular Biology at Cold Spring Harbor Laboratory
+          and Stony Brook University, and an Advanced Graduate Certificate in Communicating
+          Science from the Alan Alda Center.
+        </p>
+
+        <p class="contact">
+          The source is on <a href="https://github.com/zhezhen-y">GitHub</a>.
+        </p>
+      </div>
+
+      <figure class="mark">
+        <Image src={logo} alt="An eye above a beam of light falling on a DNA double helix, painted in wheat, amber and blue on a circular ground." widths={[320, 480, 640]} sizes="(max-width: 860px) 60vw, 320px" />
+      </figure>
+    </div>
+  </article>
+</Base>
+
+<style>
+  article{padding:clamp(40px,8vw,80px) clamp(18px,4vw,32px) 0}
+  .cols{
+    margin-top:30px;display:grid;grid-template-columns:minmax(0,var(--measure)) 320px;
+    gap:clamp(32px,6vw,64px);align-items:start;
+  }
+  @media(max-width:860px){
+    .cols{grid-template-columns:1fr}
+    .mark{order:-1;max-width:260px}
+  }
+  .body p{font-family:var(--serif);font-size:1.02rem;line-height:1.75;margin:0 0 20px}
+  .body .lead{
+    font-size:clamp(1.15rem,2.4vw,1.4rem);color:var(--ink);line-height:1.55;
+    margin-bottom:28px;font-family:var(--serif);
+  }
+  blockquote{
+    margin:0 0 28px;padding-left:22px;border-left:2.5px solid var(--brand-amber);
+    font-family:var(--serif);font-style:italic;color:var(--muted);
+    font-size:1.02rem;line-height:1.75;
+  }
+  .contact{color:var(--muted)}
+  .mark{margin:0}
+  .mark :global(img){width:100%;height:auto;display:block;border-radius:50%}
+</style>

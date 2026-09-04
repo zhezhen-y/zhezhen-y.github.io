@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Zhezhen Yu">
+  <title>Zhezhen Yu</title>
+  <!-- A vector reduction of the painted mark, for the navigation and the favicon,
+       where brush texture is lost anyway. The painted original stays the large image. -->
+  <circle cx="50" cy="50" r="42" fill="#DCC08A"/>
+  <path d="M42 33 L58 33 L64 74 L36 74 Z" fill="#E0A32B"/>
+  <path d="M30 28 Q50 14 70 28 Q50 42 30 28 Z" fill="#F5F1E8"/>
+  <circle cx="50" cy="28" r="6.5" fill="#DCC08A"/>
+  <g stroke="#5580BB" stroke-width="2.4" stroke-linecap="round" fill="none">
+    <path d="M20 70 V82 M32 70 V82 M44 70 V82 M56 70 V82 M68 70 V82"/>
+  </g>
+  <g stroke="#5580BB" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M14 76 Q20 64 26 76 Q32 88 38 76 Q44 64 50 76 Q56 88 62 76 Q68 64 74 76 Q80 88 86 76"/>
+    <path d="M14 76 Q20 88 26 76 Q32 64 38 76 Q44 88 50 76 Q56 64 62 76 Q68 88 74 76 Q80 64 86 76"/>
+  </g>
+</svg>

@@ -1,51 +1,42 @@
-## Developer Portfolio Landing Page Template
+# zhezhen-y.github.io
 
-### Introduction
+Generative sciart, and write-ups of how each piece works.
+Live at <https://zhezhen-y.github.io>.
 
-Use this template if you need a quick developer / data science portfolio! Based on a Minimal Jekyll theme for GitHub Pages.
+Two generators, both seeded, both running in the browser:
 
-<img src="images/demo.gif?raw=true"/>
+- **Composition Machine** (`/mondrian`) builds Mondrian compositions by recursive
+  subdivision rather than by scattering independent line offsets, and can render the naive
+  version beside it for comparison.
+- **Heatmap as Art** (`/heatmap-as-art`) renders heatmaps in eight painters' palettes over
+  four kinds of structured field, which is the part that makes a palette read as a painting
+  instead of as static.
 
-### Installation
+Every image comes from a seed you can copy, so any result is reproducible.
 
-See full step by step tutorial [on Medium](https://medium.com/@evanca/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd).
-___
+## Running it
 
-You can use the editor on GitHub to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+npm install
+npm run dev      # local server
+npm test         # the generator test suites
+npm run build    # static build into dist/
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Layout
 
-### Roadmap
+```
+src/scripts/     the two generators, plain ES modules with no dependencies
+src/pages/       one file per route
+src/styles/      design tokens and the shared generator chrome
+src/assets/      images that go through Astro's optimizer
+test/            node test suites run in CI before any deploy
+```
 
-See the [open issues](https://github.com/evanca/quick-portfolio/issues) for a list of proposed features (and known issues).
-___
+The generators are dependency-free modules and are tested directly, so they can be dropped
+into a notebook or another page without the site around them.
 
-### References
+## Deploying
 
-[1] Jekyll theme "Minimal" for GitHub Pages: https://github.com/pages-themes/minimal (CC0 1.0 Universal License)
-<br>[2] Dummy photo via: https://pixabay.com/photos/man-male-adult-person-caucasian-1209494/ (Pixabay License)
-<br>[3] Dummy thumbnail image created by rawpixel.com: https://www.freepik.com/free-vector/set-elements-infographic_2807573.htm (Standard Freepik License)
+Pushing to `main` runs the tests, builds, and publishes via GitHub Actions.
+Repository **Settings → Pages → Source** must be set to **GitHub Actions**.

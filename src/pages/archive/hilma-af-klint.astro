@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Image } from 'astro:assets';
+
+import alleles1 from '../../assets/archive/alleles-1.jpeg';
+import alleles2 from '../../assets/archive/alleles-2.jpeg';
+import alleles3 from '../../assets/archive/alleles-3.jpeg';
+import alleles4 from '../../assets/archive/alleles-4.jpeg';
+import alleles5 from '../../assets/archive/alleles-5.jpeg';
+import alleles6 from '../../assets/archive/alleles-6.jpeg';
+import dna1 from '../../assets/archive/dna-1.jpeg';
+import chrom1 from '../../assets/archive/chromosomes-1.jpeg';
+import chrom2 from '../../assets/archive/chromosomes-2.jpeg';
+import imp1 from '../../assets/archive/impressionism-1.jpeg';
+import imp2 from '../../assets/archive/impressionism-2.jpeg';
+import min1 from '../../assets/archive/minimalism-1.jpeg';
+
+const alleles = [
+  { src: alleles1, alt: 'On a dark olive ground, a white-outlined teardrop holding a green leaf form, an orange sunburst trailing tendrils, and a large dusty pink circle ringed in yellow and magenta.' },
+  { src: alleles2, alt: 'A large almond eye filling a near-black frame, ringed in white, pink and magenta around a black pupil, with orange wedges at either corner.' },
+  { src: alleles3, alt: 'On bright red-orange, a circle divided into wedges of blue, pink, teal, olive and cream around a pale pink center ringed in green.' },
+  { src: alleles4, alt: 'A pale disc on black holding many smaller circles: a yellow sunburst, a red disc, green and dotted pink rounds, with a rose arc sweeping over the top.' },
+  { src: alleles5, alt: 'On black, a pale arch frames concentric grey, cream, yellow and violet rings around an orange dot, above a fan of yellow, pink and blue bands.' },
+  { src: alleles6, alt: 'Flat fields of magenta, gold, sky blue and tan, with a large concentric circle at left in teal, green and orange, and a pale yellow disc upper right.' },
+];
+const strands = [
+  { src: dna1,   alt: 'Nested circular and organic forms in green, rose, violet and teal with an orange band down the right edge, and a ring of small pink dots around a yellow disc.' },
+  { src: chrom1, alt: 'A white disc on black, crossed by fine lines, with curved multicolored streaks radiating from the center and scattered dots and dashes around the rim.' },
+  { src: chrom2, alt: 'Concentric arcs of red, cream, purple and black forming a target, with small red crosses along the lower band and pale ovals at the center.' },
+];
+const others = [
+  { src: imp1, alt: 'A dense field of small flowers in yellow, orange, pink and violet beneath a glowing sun, painted in short broken strokes.' },
+  { src: imp2, alt: 'Large orange-red spheres of varying size scattered across a teal and green ground, stippled like cells seen under a microscope.' },
+  { src: min1, alt: 'White rectangular marks in vertical columns on a near-black ground, resembling a sequencing gel or a barcode.' },
+];
+---
+<Base
+  current="archive"
+  title="What would Hilma af Klint do?"
+  accent="archive"
+  description="Prompting Stable Diffusion toward cell biology in the style of Hilma af Klint, 2022."
+>
+  <article class="wrap">
+    <p class="stamp reveal"><span class="eyebrow">Archive &middot; 2022</span></p>
+    <h1 class="reveal">What would Hilma af Klint do?</h1>
+
+    <div class="body reveal">
+      <p class="note">
+        Made in 2022 with Stable Diffusion.
+      </p>
+
+      <p>
+        Hilma af Klint is one of my favorite abstract artists. Years ago I was lucky to see
+        her work on exhibit at the Guggenheim. When I look at her art it almost always reminds
+        me of molecular and cellular biology concepts: chromosomes, cell division. So what if
+        she had actually been inspired by those?
+      </p>
+    </div>
+
+    <section class="reveal">
+      <h2>Alleles</h2>
+      <p class="prompt"><code>alleles in the style of Hilma af Klint</code></p>
+      <div class="grid">
+        {alleles.map(i => <figure><Image src={i.src} alt={i.alt} widths={[320, 640, 960]} sizes="(max-width: 700px) 46vw, 30vw" loading="lazy" /></figure>)}
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>DNA and chromosomes</h2>
+      <p class="prompt"><code>DNA in the style of Hilma af Klint</code><br /><code>chromosomes in the style of Hilma af Klint</code></p>
+      <div class="grid">
+        {strands.map(i => <figure><Image src={i.src} alt={i.alt} widths={[320, 640, 960]} sizes="(max-width: 700px) 46vw, 30vw" loading="lazy" /></figure>)}
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Other prompts from the same sitting</h2>
+      <p class="prompt"><code>molecular biology in impressionism style</code><br /><code>sequencing data in minimalism style</code></p>
+      <div class="grid">
+        {others.map(i => <figure><Image src={i.src} alt={i.alt} widths={[320, 640, 960]} sizes="(max-width: 700px) 46vw, 30vw" loading="lazy" /></figure>)}
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  article{padding:clamp(36px,7vw,72px) clamp(18px,4vw,32px) 0}
+  .stamp{margin:0 0 22px;color:var(--accent)}
+  .body{margin-top:26px;max-width:var(--measure)}
+  .body p{font-family:var(--serif);font-size:1.02rem;line-height:1.75;margin:0 0 20px}
+  .note{
+    border-left:2.5px solid var(--accent);padding-left:20px;color:var(--muted);
+  }
+  article > section{margin-top:var(--step)}
+  h2{margin-bottom:6px}
+  .prompt{margin:0 0 26px}
+  .prompt code{
+    font-family:var(--mono);font-size:.82rem;color:var(--muted);
+    background:var(--sunk);border:1px solid var(--rule);border-radius:4px;padding:2px 7px;
+    display:inline-block;margin-bottom:4px;
+  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  figure{margin:0}
+  figure :global(img){width:100%;height:auto;display:block;box-shadow:0 2px 22px var(--shadow)}
+</style>

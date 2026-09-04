@@ -1,0 +1,78 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { getImage } from 'astro:assets';
+import logo from '../assets/logo.png';
+import '../styles/tokens.css';
+
+// The painted mark is the social preview. The SVG reduction stays the favicon,
+// where brush texture is lost at 32px anyway.
+const og = await getImage({ src: logo, width: 1200, height: 1200, format: 'jpeg' });
+
+const {
+  title,
+  description = 'Generative sciart by Zhezhen Yu: Mondrian compositions and heatmaps in painters’ palettes, with the code behind them.',
+  current,
+  accent,            // one of the --accent-* token names, per page
+} = Astro.props;
+
+const full = title ? `${title} — Zhezhen Yu` : 'Zhezhen Yu — Beauty of randomness';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{full}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+
+  <meta property="og:title" content={full} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+  <meta property="og:image" content={new URL(og.src, Astro.site)} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1200" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={new URL(og.src, Astro.site)} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body style={accent ? `--accent: var(--accent-${accent})` : undefined}>
+  <a class="skip" href="#main">Skip to content</a>
+  <Nav current={current} />
+  <main id="main"><slot /></main>
+  <Footer />
+
+  <script>
+    // Reveal on first intersection only. Opacity, nothing else.
+    const items = document.querySelectorAll('.reveal');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); }
+        }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      items.forEach((el) => io.observe(el));
+    } else {
+      items.forEach((el) => el.classList.add('seen'));
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  .skip{
+    position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--ground);
+    padding:10px 18px;font-family:var(--mono);font-size:11px;text-transform:uppercase;
+    letter-spacing:.09em;z-index:10;
+  }
+  .skip:focus{left:8px;top:8px}
+</style>
