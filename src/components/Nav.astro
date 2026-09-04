@@ -7,7 +7,7 @@ const links = [
 ---
 <header class="nav wrap">
   <a class="wm" href="/">
-    <img src="/logo.svg" alt="" width="46" height="46" />
+    <img src="/logo.svg" alt="" width="62" height="62" />
     <span>Zhezhen&nbsp;Yu</span>
   </a>
   <nav aria-label="Primary">
@@ -25,8 +25,8 @@ const links = [
     flex-wrap:wrap;padding-top:26px;padding-bottom:26px;
   }
   .wm{
-    display:flex;align-items:center;gap:13px;
-    color:var(--ink);text-decoration:none;font-size:1.3rem;
+    display:flex;align-items:center;gap:15px;
+    color:var(--ink);text-decoration:none;font-size:1.45rem;
     font-weight:300;letter-spacing:-.01em;
   }
   .wm img{border-radius:50%;display:block}
@@ -38,5 +38,12 @@ const links = [
   nav a[aria-current]{
     text-decoration:underline;text-decoration-color:var(--accent);
     text-decoration-thickness:2px;
+  }
+  /* At 62px the mark plus the wordmark overflowed a 390px screen, which widened
+     the whole page and clipped the headings below. Scale both back on phones. */
+  @media (max-width:560px){
+    .wm{font-size:1.15rem;gap:10px}
+    .wm img{width:42px;height:42px}
+    nav ul{gap:20px}
   }
 </style>
