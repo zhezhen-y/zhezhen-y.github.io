@@ -9,10 +9,6 @@ const archiveThumb = await getImage({ src: dna, width: 640, height: 480, fit: 'c
 <Base current="work">
   <section class="hero wrap">
     <h1 class="reveal">Beauty of randomness</h1>
-    <p class="lead reveal">
-      Two generators that make pictures from randomness. Each one comes with the code and
-      an explanation of how it works.
-    </p>
   </section>
 
   <section class="wrap">
@@ -36,7 +32,6 @@ const archiveThumb = await getImage({ src: dna, width: 640, height: 480, fit: 'c
 
   <section class="wrap archive">
     <h2 class="reveal">Archive</h2>
-    <p class="lead reveal">Earlier work, from before the generators.</p>
     <div class="cards single">
       <Card
         href="/archive/hilma-af-klint/"
@@ -51,15 +46,13 @@ const archiveThumb = await getImage({ src: dna, width: 640, height: 480, fit: 'c
 
 <style>
   .hero{padding:clamp(40px,9vw,96px) clamp(18px,4vw,32px) clamp(36px,6vw,64px)}
-  .hero .lead{margin-top:22px}
   .cards{display:grid;gap:clamp(26px,4vw,40px)}
   /* Two generators sit under "Beauty of randomness"; the archive is a separate
      thing and gets its own heading rather than a third equal slot. */
   .cards.pair{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
   .cards.single{grid-template-columns:1fr;max-width:400px}
   .archive{margin-top:var(--step)}
-  .archive h2{margin-bottom:10px}
-  .archive .lead{font-size:1rem;margin-bottom:30px}
+  .archive h2{margin-bottom:30px}
 </style>
 
 <script>
