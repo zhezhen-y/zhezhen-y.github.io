@@ -1,14 +1,13 @@
 ---
 const { current } = Astro.props;
 const links = [
-  { href: '/',        label: 'Work',    key: 'work' },
-  { href: '/archive/',label: 'Archive', key: 'archive' },
-  { href: '/about/',  label: 'About',   key: 'about' },
+  { href: '/',       label: 'Sciart', key: 'work' },
+  { href: '/about/', label: 'About',  key: 'about' },
 ];
 ---
 <header class="nav wrap">
   <a class="wm" href="/">
-    <img src="/logo.svg" alt="" width="34" height="34" />
+    <img src="/logo.svg" alt="" width="46" height="46" />
     <span>Zhezhen&nbsp;Yu</span>
   </a>
   <nav aria-label="Primary">
@@ -26,8 +25,8 @@ const links = [
     flex-wrap:wrap;padding-top:26px;padding-bottom:26px;
   }
   .wm{
-    display:flex;align-items:center;gap:11px;
-    color:var(--ink);text-decoration:none;font-size:1.15rem;
+    display:flex;align-items:center;gap:13px;
+    color:var(--ink);text-decoration:none;font-size:1.3rem;
     font-weight:300;letter-spacing:-.01em;
   }
   .wm img{border-radius:50%;display:block}

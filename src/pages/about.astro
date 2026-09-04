@@ -3,17 +3,19 @@ import Base from '../layouts/Base.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 ---
-<Base
-  current="about"
-  title="About"
-  description="Sciart by Zhezhen Yu."
->
+<Base current="about" title="About" description="Sciart by Zhezhen Yu.">
   <article class="wrap">
     <h1 class="reveal">About</h1>
 
     <div class="cols reveal">
       <div class="body">
-        <p class="lead">
+        <p>
+          I finished a PhD in Molecular and Cellular Biology at Cold Spring Harbor Laboratory
+          and Stony Brook University, and an Advanced Graduate Certificate in Communicating
+          Science from the Alan Alda Center.
+        </p>
+
+        <p>
           This website displays my sciart creations.
         </p>
 
@@ -22,16 +24,6 @@ import logo from '../assets/logo.png';
           this sciart project hopefully sparks more interest in science, and brings more
           attention to biological stories.
         </blockquote>
-
-        <p>
-          I finished a PhD in Molecular and Cellular Biology at Cold Spring Harbor Laboratory
-          and Stony Brook University, and an Advanced Graduate Certificate in Communicating
-          Science from the Alan Alda Center.
-        </p>
-
-        <p class="contact">
-          The source is on <a href="https://github.com/zhezhen-y">GitHub</a>.
-        </p>
       </div>
 
       <figure class="mark">
@@ -51,17 +43,16 @@ import logo from '../assets/logo.png';
     .cols{grid-template-columns:1fr}
     .mark{order:-1;max-width:260px}
   }
-  .body p{font-family:var(--serif);font-size:1.02rem;line-height:1.75;margin:0 0 20px}
-  .body .lead{
-    font-size:clamp(1.15rem,2.4vw,1.4rem);color:var(--ink);line-height:1.55;
-    margin-bottom:28px;font-family:var(--serif);
+  /* One body treatment, not three. The quote is the same face and size as the
+     prose, set in italic and indented; nothing else changes weight or scale. */
+  .body p,.body blockquote{
+    font-family:var(--serif);font-size:1.05rem;line-height:1.75;
+    color:var(--ink);margin:0 0 22px;
   }
-  blockquote{
-    margin:0 0 28px;padding-left:22px;border-left:2.5px solid var(--brand-amber);
-    font-family:var(--serif);font-style:italic;color:var(--muted);
-    font-size:1.02rem;line-height:1.75;
+  .body blockquote{
+    font-style:italic;color:var(--muted);
+    padding-left:22px;border-left:1px solid var(--rule-strong);margin-top:30px;
   }
-  .contact{color:var(--muted)}
   .mark{margin:0}
   .mark :global(img){width:100%;height:auto;display:block;border-radius:50%}
 </style>

@@ -35,7 +35,7 @@ const others = [
 ];
 ---
 <Base
-  current="archive"
+  current="work"
   title="What would Hilma af Klint do?"
   accent="archive"
   description="Prompting Stable Diffusion toward cell biology in the style of Hilma af Klint, 2022."
@@ -74,7 +74,10 @@ const others = [
     </section>
 
     <section class="reveal">
-      <h2>Other prompts from the same sitting</h2>
+      <h2 class="aside">Same session, no af Klint</h2>
+      <p class="say">
+        Three more from the same afternoon in 2022, prompted toward other painters instead.
+      </p>
       <p class="prompt"><code>molecular biology in impressionism style</code><br /><code>sequencing data in minimalism style</code></p>
       <div class="grid">
         {others.map(i => <figure><Image src={i.src} alt={i.alt} widths={[320, 640, 960]} sizes="(max-width: 700px) 46vw, 30vw" loading="lazy" /></figure>)}
@@ -93,6 +96,11 @@ const others = [
   }
   article > section{margin-top:var(--step)}
   h2{margin-bottom:6px}
+  /* This group is not af Klint, so it is set apart rather than presented as a
+     third section of the same series. */
+  h2.aside{margin-top:18px;padding-top:var(--step);border-top:1px solid var(--rule)}
+  .say{font-family:var(--serif);color:var(--muted);font-size:1rem;line-height:1.7;
+       max-width:var(--measure);margin:0 0 22px}
   .prompt{margin:0 0 26px}
   .prompt code{
     font-family:var(--mono);font-size:.82rem;color:var(--muted);
