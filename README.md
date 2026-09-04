@@ -38,5 +38,5 @@ into a notebook or another page without the site around them.
 
 ## Deploying
 
-Pushing to `master` runs the tests, builds, and publishes via GitHub Actions.
+Pushing to `main` runs the tests, builds, and publishes via GitHub Actions.
 Repository **Settings → Pages → Source** must be set to **GitHub Actions**.
